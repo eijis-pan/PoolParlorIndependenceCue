@@ -23,6 +23,15 @@ public class CueController : UdonSharpBehaviour
     [SerializeField] private GameObject desktop;
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject cuetip;
+#if EIJIS_INDEPENDENCE_CUE
+    [SerializeField] private GameObject axisLine;
+    [SerializeField] private GameObject bridgePoint;
+    const string uniform_marker_colour = "_Color";
+    private Color gripColorActive = new Color(0.0f, 0.5f, 1.1f, 1.0f);
+    private Color gripColorInactive = new Color(0.34f, 0.34f, 0.34f, 1.0f);
+    [SerializeField] private MeshRenderer cuePrimaryGripRenderer;
+    [SerializeField] private MeshRenderer cueSecondaryGripRenderer;
+#endif
 
     [UdonSynced] private byte syncedCueSkin;
     private int activeCueSkin;
@@ -30,12 +39,20 @@ public class CueController : UdonSharpBehaviour
     private bool holderIsDesktop;
     [UdonSynced] private bool syncedHolderIsDesktop;
 
+#if EIJIS_INDEPENDENCE_CUE
+    [UdonSynced] private bool primaryHolding;
+#else
     private bool primaryHolding;
+#endif
     [UdonSynced] private bool primaryLocked;
     [UdonSynced] private Vector3 primaryLockPos;
     [UdonSynced] private Vector3 primaryLockDir;
 
+#if false // EIJIS_INDEPENDENCE_CUE
+    [UdonSynced] private bool secondaryHolding;
+#else
     private bool secondaryHolding;
+#endif
     [UdonSynced] private bool secondaryLocked;
     [UdonSynced] private Vector3 secondaryLockPos;
 
@@ -109,6 +126,10 @@ public class CueController : UdonSharpBehaviour
 #else
         _DisableRenderer();
 #endif
+#if EIJIS_INDEPENDENCE_CUE
+        if (!ReferenceEquals(null, axisLine)) axisLine.SetActive(false);
+        if (!ReferenceEquals(null, bridgePoint)) bridgePoint.SetActive(false);
+#endif
     }
 
     public override void OnDeserialization()
@@ -129,6 +150,48 @@ public class CueController : UdonSharpBehaviour
 
         refreshCueSkin();
         refreshCueScale();
+#endif
+#if EIJIS_INDEPENDENCE_CUE
+        if (primaryHolding)
+        {
+            if (Networking.LocalPlayer.IsOwner(gameObject))
+            {
+                cuePrimaryGripRenderer.material.SetColor(uniform_marker_colour, gripColorActive);
+                cueSecondaryGripRenderer.material.SetColor(uniform_marker_colour, gripColorActive);
+            }
+            else
+            {
+                cuePrimaryGripRenderer.material.SetColor(uniform_marker_colour, gripColorInactive);
+                cueSecondaryGripRenderer.material.SetColor(uniform_marker_colour, gripColorInactive);
+            }
+            if (!syncedHolderIsDesktop) secondaryController._Show();
+        }
+        else
+        {
+            secondaryController._Hide();
+        }
+        
+        if (!ReferenceEquals(null, axisLine))
+        {
+            if (primaryLocked)
+            {
+                Vector3 pos;
+                Quaternion rot;
+                body.transform.GetPositionAndRotation(out pos, out rot);
+                axisLine.transform.SetPositionAndRotation(pos, rot);
+            }
+            axisLine.SetActive(primaryLocked);
+        }
+
+        if (!ReferenceEquals(null, bridgePoint))
+        {
+            if (secondaryLocked && !primaryLocked)
+            {
+                Quaternion rot = body.transform.rotation;
+                bridgePoint.transform.SetPositionAndRotation(secondaryLockPos, rot);
+            }
+            bridgePoint.SetActive(secondaryLocked && !primaryLocked);
+        }
 #endif
     }
 
@@ -311,12 +374,14 @@ public class CueController : UdonSharpBehaviour
                     body.transform.position = primaryLockPos + primaryLockDir * distance;
                 }
             }
+#if !EIJIS_INDEPENDENCE_CUE
             else
             {
                 // other player is on desktop, use the slower synced marker
                 body.transform.position = desktop.transform.position;
                 body.transform.rotation = desktop.transform.rotation;
             }
+#endif
         }
 
         // todo: ugly ugly hack from legacy 8ball. intentionally smooth/lag the position a bit
@@ -368,7 +433,11 @@ public class CueController : UdonSharpBehaviour
     {
         takeOwnership();
 
+#if false // EIJIS_INDEPENDENCE_CUE
+        holderIsDesktop = false;
+#else
         holderIsDesktop = !Networking.LocalPlayer.IsUserInVR();
+#endif
         syncedHolderIsDesktop = holderIsDesktop;
         primaryHolding = true;
         primaryLocked = false;
@@ -385,8 +454,8 @@ public class CueController : UdonSharpBehaviour
 
         table._OnPickupCue();
 
-#endif
         if (!holderIsDesktop) secondaryController._Show();
+#endif
     }
 
     public void _OnPrimaryDrop()
@@ -441,6 +510,9 @@ public class CueController : UdonSharpBehaviour
             primaryLockPos = body.transform.position;
             primaryLockDir = body.transform.forward.normalized;
             RequestSerialization();
+#if EIJIS_INDEPENDENCE_CUE
+            OnDeserialization();
+#endif
 
 #if !EIJIS_INDEPENDENCE_CUE
             table._TriggerCueActivate();
@@ -454,6 +526,9 @@ public class CueController : UdonSharpBehaviour
         {
             primaryLocked = false;
             RequestSerialization();
+#if EIJIS_INDEPENDENCE_CUE
+            OnDeserialization();
+#endif
 
 #if !EIJIS_INDEPENDENCE_CUE
             table._TriggerCueDeactivate();
@@ -466,6 +541,9 @@ public class CueController : UdonSharpBehaviour
         secondaryHolding = true;
         secondaryLocked = false;
         RequestSerialization();
+#if EIJIS_INDEPENDENCE_CUE
+        OnDeserialization();
+#endif
     }
 
     public void _OnSecondaryDrop()
@@ -473,6 +551,9 @@ public class CueController : UdonSharpBehaviour
         secondaryHolding = false;
 
         resetSecondaryOffset();
+#if EIJIS_INDEPENDENCE_CUE
+        OnDeserialization();
+#endif
     }
 
     public void _OnSecondaryUseDown()
@@ -481,6 +562,9 @@ public class CueController : UdonSharpBehaviour
         secondaryLockPos = secondary.transform.position;
 
         RequestSerialization();
+#if EIJIS_INDEPENDENCE_CUE
+        OnDeserialization();
+#endif
     }
 
     public void _OnSecondaryUseUp()
@@ -488,6 +572,9 @@ public class CueController : UdonSharpBehaviour
         secondaryLocked = false;
 
         RequestSerialization();
+#if EIJIS_INDEPENDENCE_CUE
+        OnDeserialization();
+#endif
     }
 
 #if !EIJIS_INDEPENDENCE_CUE
