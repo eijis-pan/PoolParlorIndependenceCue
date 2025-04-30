@@ -31,6 +31,13 @@ public class CueController : UdonSharpBehaviour
     private Color gripColorInactive = new Color(0.34f, 0.34f, 0.34f, 1.0f);
     [SerializeField] private MeshRenderer cuePrimaryGripRenderer;
     [SerializeField] private MeshRenderer cueSecondaryGripRenderer;
+    [SerializeField] private GameObject controllerDescriptionPanel;
+    private VRCPlayerApi playerLocal;
+    private Vector3 controllerDescriptionPanelLocalPos;
+    [SerializeField] private GameObject controllerDescriptionPanel_RT;
+    [SerializeField] private GameObject controllerDescriptionPanel_RG;
+    [SerializeField] private GameObject controllerDescriptionPanel_LT;
+    [SerializeField] private GameObject controllerDescriptionPanel_LG;
 #endif
 
     [UdonSynced] private byte syncedCueSkin;
@@ -48,7 +55,7 @@ public class CueController : UdonSharpBehaviour
     [UdonSynced] private Vector3 primaryLockPos;
     [UdonSynced] private Vector3 primaryLockDir;
 
-#if false // EIJIS_INDEPENDENCE_CUE
+#if EIJIS_INDEPENDENCE_CUE
     [UdonSynced] private bool secondaryHolding;
 #else
     private bool secondaryHolding;
@@ -129,6 +136,15 @@ public class CueController : UdonSharpBehaviour
 #if EIJIS_INDEPENDENCE_CUE
         if (!ReferenceEquals(null, axisLine)) axisLine.SetActive(false);
         if (!ReferenceEquals(null, bridgePoint)) bridgePoint.SetActive(false);
+        if (!ReferenceEquals(null, controllerDescriptionPanel))
+        {
+            playerLocal = Networking.LocalPlayer;
+            controllerDescriptionPanelLocalPos = controllerDescriptionPanel.transform.localPosition;
+            controllerDescriptionPanel_RT.SetActive(false);
+            controllerDescriptionPanel_RG.SetActive(false);
+            controllerDescriptionPanel_LT.SetActive(false);
+            controllerDescriptionPanel_LG.SetActive(false);
+        }
 #endif
     }
 
@@ -173,13 +189,6 @@ public class CueController : UdonSharpBehaviour
         
         if (!ReferenceEquals(null, axisLine))
         {
-            if (primaryLocked)
-            {
-                Vector3 pos;
-                Quaternion rot;
-                body.transform.GetPositionAndRotation(out pos, out rot);
-                axisLine.transform.SetPositionAndRotation(pos, rot);
-            }
             axisLine.SetActive(primaryLocked);
         }
 
@@ -191,6 +200,14 @@ public class CueController : UdonSharpBehaviour
                 bridgePoint.transform.SetPositionAndRotation(secondaryLockPos, rot);
             }
             bridgePoint.SetActive(secondaryLocked && !primaryLocked);
+        }
+
+        if (!ReferenceEquals(null, controllerDescriptionPanel))
+        {
+            controllerDescriptionPanel_RT.SetActive(primaryLocked);
+            controllerDescriptionPanel_RG.SetActive(primaryHolding);
+            controllerDescriptionPanel_LT.SetActive(secondaryLocked);
+            controllerDescriptionPanel_LG.SetActive(secondaryHolding);
         }
 #endif
     }
@@ -243,6 +260,13 @@ public class CueController : UdonSharpBehaviour
         {
             resetPosition();
         }
+#if EIJIS_INDEPENDENCE_CUE
+        else if (!primaryHolding)
+        {
+            takeOwnership();
+            resetPosition();
+        }
+#endif
     }
 #if !EIJIS_INDEPENDENCE_CUE
     public void _RefreshTable()
@@ -274,8 +298,36 @@ public class CueController : UdonSharpBehaviour
         desktop.transform.rotation = body.transform.rotation;
     }
 #endif
+#if false // EIJIS_INDEPENDENCE_CUE
+    private void Update()
+    {
+        if (!ReferenceEquals(null, controllerDescriptionPanel))
+        {
+            var direction = controllerDescriptionPanel.transform.position - Networking.LocalPlayer.GetTrackingData(VRCPlayerApi.TrackingDataType.Head).position;
+            if (direction != Vector3.zero)
+            {
+                var lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+                controllerDescriptionPanel.transform.rotation = Quaternion.Lerp(controllerDescriptionPanel.transform.rotation, lookRotation, 0.1f);
+            }
+            // controllerDescriptionPanel.transform.LookAt(Networking.LocalPlayer.GetTrackingData(VRCPlayerApi.TrackingDataType.Head).position);
+        }
+    }
+#endif
     private void FixedUpdate()
     {
+#if EIJIS_INDEPENDENCE_CUE
+        if (!ReferenceEquals(null, controllerDescriptionPanel))
+        {
+            controllerDescriptionPanel.transform.position = body.transform.position + controllerDescriptionPanelLocalPos;
+            var direction = controllerDescriptionPanel.transform.position - playerLocal.GetTrackingData(VRCPlayerApi.TrackingDataType.Head).position;
+            if (direction != Vector3.zero)
+            {
+                var lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+                controllerDescriptionPanel.transform.rotation = Quaternion.Lerp(controllerDescriptionPanel.transform.rotation, lookRotation, 0.1f);
+            }
+        }
+
+#endif
         if (primaryHolding)
         {
             // must not be shooting, since that takes control of the cue object

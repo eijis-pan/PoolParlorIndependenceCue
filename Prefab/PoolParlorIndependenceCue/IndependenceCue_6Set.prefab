@@ -81,17 +81,20 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4156391511946666721, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 6477233796671790205, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -101,6 +104,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IndependenceCue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073634722253530355, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7123643415913781533, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
@@ -190,17 +198,20 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4156391511946666721, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 6477233796671790205, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -210,6 +221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IndependenceCue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073634722253530355, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7123643415913781533, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
@@ -299,17 +315,20 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4156391511946666721, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 6477233796671790205, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -319,6 +338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IndependenceCue (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073634722253530355, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7123643415913781533, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
@@ -408,17 +432,20 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4156391511946666721, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 6477233796671790205, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -428,6 +455,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IndependenceCue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073634722253530355, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7123643415913781533, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
@@ -517,17 +549,20 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4156391511946666721, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 6477233796671790205, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -537,6 +572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IndependenceCue (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073634722253530355, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7123643415913781533, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
@@ -626,17 +666,20 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4156391511946666721, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4173037057006309898, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5823860505602960660, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
     - target: {fileID: 6477233796671790205, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -646,6 +689,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IndependenceCue (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073634722253530355, guid: a9367c5c79a574240a11aee8401b6576,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7123643415913781533, guid: a9367c5c79a574240a11aee8401b6576,
         type: 3}
