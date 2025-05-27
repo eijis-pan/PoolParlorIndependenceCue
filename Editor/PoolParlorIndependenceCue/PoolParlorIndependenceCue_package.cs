@@ -6,7 +6,7 @@ namespace EijisPoolParlorTableUtil
 {
 	public class IndependenceCuePackage
 	{
-		private static readonly string exportPackageFilePath = "PoolParlorIndependenceCue_20250501.unityPackage";
+		private static readonly string exportPackageFilePath = "PoolParlorIndependenceCue_20250527.unityPackage";
 		static readonly string[] exportFilePaths = 
 		{
 			"Assets/eijis/Materials/PoolParlorIndependenceCue/ControllerDescription.mat",
@@ -14,6 +14,8 @@ namespace EijisPoolParlorTableUtil
 			"Assets/eijis/Materials/PoolParlorIndependenceCue/ControllerDescription_LT.mat",
 			"Assets/eijis/Materials/PoolParlorIndependenceCue/ControllerDescription_RG.mat",
 			"Assets/eijis/Materials/PoolParlorIndependenceCue/ControllerDescription_RT.mat",
+			"Assets/eijis/Materials/PoolParlorIndependenceCue/Invisible.mat",
+			"Assets/eijis/Materials/PoolParlorIndependenceCue/TriggerMarker_Red.mat",
 			"Assets/eijis/Materials/PoolParlorIndependenceCue/TriggerMarker_Yellow.mat",
 			"Assets/eijis/Prefab/PoolParlorIndependenceCue/Cue Reset.prefab",
 			"Assets/eijis/Prefab/PoolParlorIndependenceCue/Description Panel Toggle.prefab",
@@ -33,7 +35,7 @@ namespace EijisPoolParlorTableUtil
 			"Assets/eijis/UdonScripts/PoolParlorIndependenceCue/IndependenceCueGrip.cs"
 		};
 		
-		[MenuItem("GameObject/TKCH/PoolParlor/IndependenceCueExportPackage_20250501", false, 0)]
+		[MenuItem("GameObject/TKCH/PoolParlor/IndependenceCueExportPackage_20250527", false, 0)]
 		private static void ExportPackage_Menu(MenuCommand command)
 		{
 			try

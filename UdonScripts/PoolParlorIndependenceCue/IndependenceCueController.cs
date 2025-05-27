@@ -38,6 +38,8 @@ public class CueController : UdonSharpBehaviour
     [SerializeField] private GameObject controllerDescriptionPanel_RG;
     [SerializeField] private GameObject controllerDescriptionPanel_LT;
     [SerializeField] private GameObject controllerDescriptionPanel_LG;
+    [SerializeField] private Material cueSecondaryMaterial;
+    [SerializeField] private Material cueSecondaryInvisibleMaterial;
 #endif
 
     [UdonSynced] private byte syncedCueSkin;
@@ -180,7 +182,22 @@ public class CueController : UdonSharpBehaviour
                 cuePrimaryGripRenderer.material.SetColor(uniform_marker_colour, gripColorInactive);
                 cueSecondaryGripRenderer.material.SetColor(uniform_marker_colour, gripColorInactive);
             }
-            if (!syncedHolderIsDesktop) secondaryController._Show();
+            if (!syncedHolderIsDesktop)
+            {
+                if (primaryLocked && secondaryHolding)
+                {
+                    cueSecondaryGripRenderer.material = cueSecondaryInvisibleMaterial;
+                }
+                else
+                {
+                    cueSecondaryGripRenderer.material = cueSecondaryMaterial;
+                }
+                
+                if (!secondaryLocked)
+                {
+                    secondaryController._Show();
+                }
+            }
         }
         else
         {

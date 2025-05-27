@@ -1486,7 +1486,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c9f84aae5ea88fa44ba1b8508a414a59, type: 2}
+  - {fileID: 2100000, guid: cce51682de2b0e2438d1ad8d1b0f0d28, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1583,6 +1583,10 @@ MonoBehaviour:
   controllerDescriptionPanel_RG: {fileID: 4311870962718492702}
   controllerDescriptionPanel_LT: {fileID: 1588941190760130659}
   controllerDescriptionPanel_LG: {fileID: 7906891219385500848}
+  cueSecondaryMaterial: {fileID: 2100000, guid: 08449cb337aa5154eb9776a96efd80e4,
+    type: 2}
+  cueSecondaryInvisibleMaterial: {fileID: 2100000, guid: c41f7cbb9bd03684c93fb284c12328c3,
+    type: 2}
 --- !u!114 &4409079086837390576
 MonoBehaviour:
   m_ObjectHideFlags: 0

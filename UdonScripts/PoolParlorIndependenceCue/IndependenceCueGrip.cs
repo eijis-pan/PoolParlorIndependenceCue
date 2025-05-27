@@ -1,4 +1,6 @@
-﻿using UdonSharp;
+﻿#define EIJIS_INDEPENDENCE_CUE
+
+using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 
